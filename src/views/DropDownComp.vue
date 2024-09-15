@@ -1,24 +1,37 @@
 <template>
   <table>
+    <caption>
+      Info Table
+    </caption>
     <colgroup>
-      <col style="width: 25%" />
-      <col style="width: 5%" />
-      <col style="width: 20%" />
-      <col style="width: 50%" />
+      <col style="width: 10%" />
+      <col style="width: 90%" />
     </colgroup>
     <thead>
       <tr>
         <th>Attribute</th>
-        <th colspan="3">Value</th>
+        <th>Value</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="(item, name) in options" :key="name">
         <th>{{ name + 1 }}</th>
-        <td colspan="3">{{ item }}</td>
+        <td>{{ item }}</td>
       </tr>
     </tbody>
   </table>
+
+  <br />
+
+  <ul>
+    <li>computed</li>
+    <li>defineProps</li>
+    <li>defineEmits</li>
+    <li>onBeforeUnmount</li>
+    <li>onMounted</li>
+    <li>ref</li>
+    <li>scss: module</li>
+  </ul>
 
   <br />
 
@@ -32,7 +45,8 @@
 import { ref } from "vue";
 import DropDown from "@/components/dropdown/DropDown.vue";
 
-const parentSelectedOption = ref(null);
+const parentSelectedOption = ref(false);
+console.log("sss: ", parentSelectedOption.value.name);
 
 const options = ref([
   { name: "sample" },

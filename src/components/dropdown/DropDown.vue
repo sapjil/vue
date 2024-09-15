@@ -1,20 +1,19 @@
 <template>
-  <div class="dropdown" ref="dropDown">
+  <div :class="$style.dropdown" ref="dropDown">
     <button
       @click="isDropDownVisible = true"
-      class="dropdown_btn"
-      :class="{ active: isDropDownVisible }"
+      :class="[{ [$style.active]: isDropDownVisible }, $style.dropdown_btn]"
     >
-      <span class="dropdown_selected">
+      <span :class="$style.dropdown_selected">
         {{ meppedSelectedOption }}
       </span>
       <font-awesome-icon icon="chevron-up" fixed-width />
     </button>
     <transition name="slide-fade">
-      <div v-if="isDropDownVisible" class="list_wrap">
-        <div class="list_scroll">
+      <div v-if="isDropDownVisible" :class="$style.list_wrap">
+        <div :class="$style.list_scroll">
           <button
-            class="option"
+            :class="$style.option"
             v-for="(option, index) in props.options"
             :key="index"
             @click="toggleOptionSelect(option)"
@@ -35,10 +34,7 @@ import {
   onBeforeUnmount,
   onMounted,
   ref,
-  useCssModule,
 } from "vue";
-
-useCssModule();
 
 const dropDown = ref(null);
 
@@ -69,9 +65,10 @@ const meppedSelectedOption = computed(() => {
 const toggleOptionSelect = (option) => {
   selectedOption.value = option;
   emit("update:modelValue", option);
-  setTimeout(() => {
-    isDropDownVisible.value = false;
-  }, 1000);
+  isDropDownVisible.value = false;
+  // setTimeout(() => {
+  //   isDropDownVisible.value = false;
+  // }, 1000);
 };
 
 const closeDropDown = (element) => {
@@ -89,7 +86,7 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 .dropdown {
   position: relative;
   max-width: 240px;

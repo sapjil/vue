@@ -1,5 +1,8 @@
 <template>
   <table>
+    <caption>
+      Info Table
+    </caption>
     <thead>
       <tr>
         <th>Attribute</th>
@@ -13,6 +16,13 @@
       </tr>
     </tbody>
   </table>
+
+  <br />
+
+  <ul>
+    <li>defineProps</li>
+    <li>defineEmits</li>
+  </ul>
 
   <br />
 
@@ -59,7 +69,7 @@ const handleEvent = (data) => {
 const modalData = {
   name: "test-modal",
   type: "confirm",
-  size: "small",
+  size: "large",
   title: "modal box",
   subtit: "sub title",
   base: "Lorem <b>ipsum</b> dolor sit amet<br /> <span style='color:red'>consectetur</span> adipisicing elit.",
