@@ -45,7 +45,7 @@ button {
 }
 
 .slide-fade-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all 0.2s ease-out;
   transform: translateY(0);
 }
 
@@ -61,8 +61,16 @@ button {
 
 table {
   border-collapse: collapse;
+  thead {
+    th,
+    td {
+      background: #222;
+      color: #eee;
+    }
+  }
   td,
   th {
+    font-weight: 400;
     padding: 0.25rem 0.5rem;
     border: 1px solid #999;
   }

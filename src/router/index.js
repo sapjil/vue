@@ -3,12 +3,18 @@ import DashBoard from "../views/DashBoard.vue";
 import HomeView from "../views/HomeView.vue";
 import AboutView from "../views/AboutView.vue";
 import ModalComp from "../views/ModalComp.vue";
+import ObjectComp from "../views/ObjectComp.vue";
 
 const routes = [
   {
     path: "/",
     name: "dashboard",
     component: DashBoard,
+  },
+  {
+    path: "/object",
+    name: "object",
+    component: ObjectComp,
   },
   {
     path: "/modal",
