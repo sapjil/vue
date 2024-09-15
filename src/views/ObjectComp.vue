@@ -14,14 +14,8 @@
     </thead>
     <tbody>
       <tr v-for="(item, name) in options" :key="name">
-        <th>{{ name }}</th>
+        <th>{{ name + 1 }}</th>
         <td colspan="3">{{ item }}</td>
-      </tr>
-      <tr v-for="(item, name) in options?.option" :key="name">
-        <th>option-{{ name + 1 }}</th>
-        <td v-for="(items, name) in options?.option[name]" :key="name">
-          {{ items }}
-        </td>
       </tr>
     </tbody>
   </table>
@@ -29,7 +23,7 @@
   <br />
 
   <div>
-    <h1>Selected Option: {{ parentSelectedOption }}</h1>
+    <h2>Selected Option: {{ parentSelectedOption }}</h2>
     <DropDown :options="options" v-model="parentSelectedOption" />
   </div>
 </template>
@@ -39,11 +33,19 @@ import { ref } from "vue";
 import DropDown from "@/components/dropdown/DropDown.vue";
 
 const parentSelectedOption = ref(null);
+
 const options = ref([
-  { value: 1, name: "sample1", link: "http://google.com" },
-  { value: 2, name: "sample2", link: "http://google.com" },
-  { value: 3, name: "sample3", link: "http://google.com" },
-  { value: 4, name: "sample4", link: "http://google.com" },
+  { name: "sample" },
+  { name: "sample" },
+  { name: "sample" },
+  { name: "sample" },
+  { name: "sample" },
+  { name: "sample" },
+  { name: "sample" },
+  { name: "sample" },
+  { name: "sample" },
+  { name: "sample" },
+  { name: "sample" },
 ]);
 </script>
 

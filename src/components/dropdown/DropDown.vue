@@ -1,23 +1,23 @@
 <template>
-  <div class="drop-down">
+  <div class="dropdown" ref="dropDown">
     <button
-      @click="dropDownHandler()"
-      class="drop-down-btn"
-      :class="{ active: isOpen }"
+      @click="isDropDownVisible = true"
+      class="dropdown_btn"
+      :class="{ active: isDropDownVisible }"
     >
-      <div class="drop-down-selected">
-        <!-- {{ props?.default || "Please select option" }} -->
-        {{ mappingSelectedOption }}
-      </div>
+      <span class="dropdown_selected">
+        {{ meppedSelectedOption }}
+      </span>
       <font-awesome-icon icon="chevron-up" fixed-width />
     </button>
     <transition name="slide-fade">
-      <div v-if="isDropDown" class="drop-down-list-wrap">
-        <div class="drop-down-list-scroll">
+      <div v-if="isDropDownVisible" class="list_wrap">
+        <div class="list_scroll">
           <button
-            v-for="(option, index) in options"
+            class="option"
+            v-for="(option, index) in props.options"
             :key="index"
-            @click="toggleOption(option)"
+            @click="toggleOptionSelect(option)"
           >
             {{ option.name || option }}
           </button>
@@ -28,15 +28,19 @@
 </template>
 
 <script setup>
-import { computed, defineProps, ref } from "vue";
+import {
+  computed,
+  defineProps,
+  defineEmits,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  useCssModule,
+} from "vue";
 
-const isDropDown = ref(false);
-const isOpen = ref(false);
+useCssModule();
 
-const dropDownHandler = () => {
-  isDropDown.value = !isDropDown.value;
-  isOpen.value = !isOpen.value;
-};
+const dropDown = ref(null);
 
 const props = defineProps({
   options: {
@@ -49,30 +53,48 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["update:modelValue"]);
-console.log(props);
 
-const selectedOption = ref(null);
-const toggleOption = (option) => {
-  selectedOption.value = option;
-  emit("update:modelValue", option);
-  isDropDown.value = false;
-};
+const selectedOption = ref(false);
 
-const mappingSelectedOption = computed(() => {
+const isDropDownVisible = ref(false);
+
+const meppedSelectedOption = computed(() => {
   return (
     selectedOption.value?.name ||
     selectedOption.value ||
     "Please select something"
   );
 });
+
+const toggleOptionSelect = (option) => {
+  selectedOption.value = option;
+  emit("update:modelValue", option);
+  setTimeout(() => {
+    isDropDownVisible.value = false;
+  }, 1000);
+};
+
+const closeDropDown = (element) => {
+  if (!dropDown.value?.contains(element.target)) {
+    isDropDownVisible.value = false;
+  }
+};
+
+onMounted(() => {
+  window.addEventListener("click", closeDropDown);
+});
+
+onBeforeUnmount(() => {
+  window.addEventListener("click", closeDropDown);
+});
 </script>
 
 <style lang="scss" scoped>
-.drop-down {
+.dropdown {
   position: relative;
   max-width: 240px;
 }
-.drop-down-btn {
+.dropdown_btn {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -88,13 +110,16 @@ const mappingSelectedOption = computed(() => {
     }
   }
 }
-.drop-down-list-wrap {
+.list_wrap {
+  position: absolute;
+  width: 100%;
   background: #eee;
   padding: 0.25rem;
   border-radius: 0.5rem;
   margin-top: 2px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
-  .drop-down-list-scroll {
+  z-index: 1;
+  .list_scroll {
     max-height: 150px;
     overflow: auto;
     padding: 0.5rem;
@@ -115,5 +140,9 @@ ul {
   gap: 0.5rem;
 }
 li {
+}
+.option {
+  width: 100%;
+  justify-content: flex-start;
 }
 </style>
