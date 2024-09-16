@@ -20,7 +20,6 @@
   <br />
 
   <ul>
-    <li>dialog</li>
     <li>defineProps</li>
     <li>defineEmits</li>
   </ul>
@@ -51,7 +50,7 @@
 
 <script setup>
 import { ref } from "vue";
-import ModalPop from "@/components/modal/ModalPop.vue";
+import ModalPop from "@/components/Parts/ModalPop.vue";
 
 const isModal = ref(false);
 const openModalHandler = ref("");
@@ -90,8 +89,5 @@ const modalData = {
   width: 100%;
   height: 100%;
   z-index: 1;
-}
-table {
-  max-width: 560px;
 }
 </style>

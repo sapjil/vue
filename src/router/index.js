@@ -4,12 +4,18 @@ import HomeView from "../views/HomeView.vue";
 import ApiComp from "../views/ApiComp.vue";
 import ModalComp from "../views/ModalComp.vue";
 import DropDownComp from "../views/DropDownComp.vue";
+import FormComp from "../views/FormComp.vue";
 
 const routes = [
   {
     path: "/",
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/form",
+    name: "form",
+    component: FormComp,
   },
   {
     path: "/dashboard",

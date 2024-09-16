@@ -43,7 +43,7 @@
 
 <script setup>
 import { ref } from "vue";
-import DropDown from "@/components/dropdown/DropDown.vue";
+import DropDown from "@/components/Parts/DropDown.vue";
 
 const parentSelectedOption = ref(null);
 console.log(parentSelectedOption);
