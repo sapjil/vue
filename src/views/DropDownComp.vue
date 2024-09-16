@@ -7,12 +7,12 @@
       <col style="width: 10%" />
       <col style="width: 90%" />
     </colgroup>
-    <thead>
+    <!-- <thead>
       <tr>
         <th>Attribute</th>
         <th>Value</th>
       </tr>
-    </thead>
+    </thead> -->
     <tbody>
       <tr v-for="(item, name) in options" :key="name">
         <th>{{ name + 1 }}</th>
@@ -45,22 +45,25 @@
 import { ref } from "vue";
 import DropDown from "@/components/dropdown/DropDown.vue";
 
-const parentSelectedOption = ref(false);
-console.log("sss: ", parentSelectedOption.value.name);
+const parentSelectedOption = ref(null);
+console.log(parentSelectedOption);
 
 const options = ref([
-  { name: "sample" },
-  { name: "sample" },
-  { name: "sample" },
-  { name: "sample" },
-  { name: "sample" },
-  { name: "sample" },
-  { name: "sample" },
-  { name: "sample" },
-  { name: "sample" },
-  { name: "sample" },
-  { name: "sample" },
+  { name: "서울" },
+  { name: "대전" },
+  { name: "부산" },
+  { name: "대구" },
+  { name: "수원" },
+  { name: "인천" },
+  { name: "광주" },
+  { name: "전주" },
+  { name: "진주" },
+  { name: "제주" },
 ]);
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+table {
+  max-width: 560px;
+}
+</style>

@@ -1,19 +1,24 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import DashBoard from "../views/DashBoard.vue";
 import HomeView from "../views/HomeView.vue";
-import AboutView from "../views/AboutView.vue";
+import ApiComp from "../views/ApiComp.vue";
 import ModalComp from "../views/ModalComp.vue";
 import DropDownComp from "../views/DropDownComp.vue";
 
 const routes = [
   {
     path: "/",
+    name: "home",
+    component: HomeView,
+  },
+  {
+    path: "/dashboard",
     name: "dashboard",
     component: DashBoard,
   },
   {
-    path: "/object",
-    name: "object",
+    path: "/dropdown",
+    name: "dropdown",
     component: DropDownComp,
   },
   {
@@ -22,14 +27,9 @@ const routes = [
     component: ModalComp,
   },
   {
-    path: "/home",
-    name: "home",
-    component: HomeView,
-  },
-  {
-    path: "/about",
-    name: "about",
-    component: AboutView,
+    path: "/api",
+    name: "api",
+    component: ApiComp,
   },
 ];
 
