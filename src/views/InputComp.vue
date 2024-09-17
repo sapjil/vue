@@ -24,9 +24,9 @@
   <br />
 
   <div class="form-div">
-    <label for="username">id:</label>
+    <label for="username"><b>INFO</b></label>
     <input type="text" name="" id="username" v-model="username" />
-    <button type="submit" @:click="submitForm">submit</button>
+    <button type="submit" @click="submitForm">submit</button>
   </div>
   <div style="padding: 1rem 0">{{ dadada }}</div>
 </template>
@@ -46,6 +46,7 @@ const submitForm = () => {
 
 <style lang="scss" scoped>
 .form-div {
+  max-width: 460px;
   display: flex;
   gap: 1rem;
   .btn {

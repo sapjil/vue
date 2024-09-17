@@ -4,15 +4,17 @@
       API DATA
     </caption>
     <colgroup>
+      <col style="width: 5%" />
       <col style="width: 15%" />
       <col style="width: 15%" />
       <col style="width: 15%" />
       <col style="width: 15%" />
       <col style="width: 15%" />
-      <col style="width: 25%" />
+      <col style="width: 20%" />
     </colgroup>
     <thead>
       <tr>
+        <th>NO</th>
         <th>ID</th>
         <th>NAME</th>
         <th>SEX</th>
@@ -23,6 +25,7 @@
     </thead>
     <tbody>
       <tr :key="i" v-for="(user, i) in userList">
+        <td>{{ i + 1 }}</td>
         <td>{{ user.userid }}</td>
         <td>{{ user.username }}</td>
         <td>{{ user.gender }}</td>

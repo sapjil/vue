@@ -28,11 +28,7 @@
 
   <button ref="openModalHandler" @click="changePopState()">
     modal open
-    <font-awesome-icon
-      icon="window-restore"
-      fixed-width
-      style="width: 1rem; height: 1rem"
-    />
+    <fa icon="window-restore" fixed-width style="width: 1rem; height: 1rem" />
   </button>
 
   <br />

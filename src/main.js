@@ -11,15 +11,23 @@ import {
   faXmark,
   faWindowRestore,
   faChevronUp,
+  faChevronLeft,
+  faChevronRight,
   faSquareCheck,
   faCircleCheck,
+  faCircleChevronLeft,
+  faCircleChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faXmark,
   faWindowRestore,
   faChevronUp,
+  faChevronLeft,
+  faChevronRight,
   faSquareCheck,
-  faCircleCheck
+  faCircleCheck,
+  faCircleChevronLeft,
+  faCircleChevronRight
 );
 
 import "@/assets/style.scss";
@@ -28,5 +36,5 @@ createApp(App)
   .use(store)
   .use(router)
   .mixin(mixins)
-  .component("font-awesome-icon", FontAwesomeIcon)
+  .component("fa", FontAwesomeIcon)
   .mount("#app");
