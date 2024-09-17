@@ -34,6 +34,7 @@
       style="width: 1rem; height: 1rem"
     />
   </button>
+
   <br />
 
   <Teleport to="#modal">
@@ -52,18 +53,21 @@
 import { ref } from "vue";
 import ModalPop from "@/components/Parts/ModalPop.vue";
 
+// MODAL 1
 const isModal = ref(false);
 const openModalHandler = ref("");
 
 const changePopState = () => {
   console.debug("Open Modal");
   isModal.value = !isModal.value;
+  // document.documentElement.style.overflow = "hidden";
 };
 
 const handleEvent = (data) => {
   console.debug("Handle Event", data);
   changePopState();
   openModalHandler.value.focus();
+  // document.documentElement.style.overflow = "auto";
 };
 
 const modalData = {

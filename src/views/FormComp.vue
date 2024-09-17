@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(item, name) in options" :key="name">
+      <tr v-for="(item, name) in inputOptions" :key="name">
         <th>{{ name }}</th>
         <td>{{ item }}</td>
       </tr>
@@ -23,24 +23,24 @@
 
   <br />
 
-  <form action="">
-    <fieldset>
-      <div class="form-div">
-        <InputComp v-bind="options" />
-        <button class="btn" type="button">btn</button>
-      </div>
-    </fieldset>
-  </form>
+  <div class="form-div">
+    <label for="username">id:</label>
+    <input type="text" name="" id="username" v-model="username" />
+    <button type="submit" @:click="submitForm">submit</button>
+  </div>
+  <div style="padding: 1rem 0">{{ dadada }}</div>
 </template>
 
 <script setup>
-import InputComp from "@/components/Parts/InputComp.vue";
+import { ref } from "vue";
 
-const options = {
-  Type: "text",
-  Name: "text_1",
-  Maxlength: 20,
-  Placeholder: "please insert text",
+const username = ref("");
+const dadada = ref("");
+
+const submitForm = () => {
+  console.log(username.value);
+  dadada.value = username.value;
+  username.value = "";
 };
 </script>
 
@@ -48,16 +48,25 @@ const options = {
 .form-div {
   display: flex;
   gap: 1rem;
-  input {
-    flex: 1;
-  }
   .btn {
     flex: 1;
+    display: grid;
   }
 }
 fieldset {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+label {
+  align-self: center;
+}
+input {
+  appearance: none;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  flex: 1;
 }
 </style>

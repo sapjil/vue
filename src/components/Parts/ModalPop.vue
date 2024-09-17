@@ -125,10 +125,10 @@ const emits = defineEmits(["closeFromChild"]);
 
 // 함수 선언식으로 사용해야 @click 이벤트를 다중으로 설정 가능
 // 팝업 닫을때 오픈 버튼으로 focus 이동
-function closeThisModal() {
-  emits("closeFromChild", false);
+const closeThisModal = () => {
+  emits("closeFromChild");
   console.debug("Close Pop");
-}
+};
 </script>
 
 <style lang="scss" scoped>
