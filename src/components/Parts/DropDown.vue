@@ -7,7 +7,7 @@
       <span :class="$style.dropdown_selected">
         {{ meppedSelectedOption }}
       </span>
-      <fa icon="chevron-up" fixed-width />
+      <font-awesome-icon icon="chevron-up" fixed-width />
     </button>
     <transition name="slide-fade">
       <div v-if="isDropDownVisible" :class="$style.list_wrap">

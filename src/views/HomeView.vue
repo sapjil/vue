@@ -15,7 +15,7 @@ const childFunc = () => {
 };
 </script>
 
-<style>
+<style lang="scss">
 .text {
   color: v-bind(color);
 }

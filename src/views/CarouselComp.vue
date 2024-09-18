@@ -3,6 +3,13 @@
     <div class="carousel__wrap">
       <div class="carousel__main">
         <transition name="fade">
+          <!--
+					# :key="datas[active].id"
+					# > 배열로 몇번째인지를 확인하기 위해 id 확인
+					# v-show="active === datas[active].id
+					# > transition 효과를 살리기 위해 v-if, v-show를 사용
+					# > active가 datas가 active된 상태의 id를 비교하여 표시
+					-->
           <div :key="datas[active].id" v-show="active === datas[active].id">
             <p>{{ datas[active].text }}</p>
           </div>
@@ -11,9 +18,16 @@
     </div>
     <div class="carousel__control">
       <button type="button" @click="prev" class="carousel__prev">
-        <fa icon="chevron-left" />
+        <font-awesome-icon icon="chevron-left" />
       </button>
       <ul class="carousel__pages" style="flex-direction: row">
+        <!--
+				# :key="idx"
+				# :class="{ current: active === data.id }"
+				# > active 상태가 data.id와 같을 때 current 클래스 사용
+				# @click="current(data.id)"
+				# > click시 methods 호출
+				# -->
         <li
           v-for="(data, idx) in datas"
           :key="idx"
@@ -24,7 +38,7 @@
         </li>
       </ul>
       <button type="button" @click="next" class="carousel__next">
-        <fa icon="chevron-right" />
+        <font-awesome-icon icon="chevron-right" />
       </button>
     </div>
   </section>
@@ -74,6 +88,7 @@ export default {
       }
     },
   },
+  // 자동 플레이시 사용
   // mounted() {
   //   let that = this;
   //   setInterval(() => {

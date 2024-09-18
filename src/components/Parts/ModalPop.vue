@@ -58,7 +58,7 @@
       v-if="props?.close"
       @click="closeThisModal()"
     >
-      <fa icon="xmark" style="width: 1.5rem; height: 1.5rem" />
+      <font-awesome-icon icon="xmark" style="width: 1.5rem; height: 1.5rem" />
     </button>
   </dialog>
 </template>
