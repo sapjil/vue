@@ -1,21 +1,22 @@
 <template>
   <nav>
-    <router-link
-      class="menu"
-      v-for="item in routeslist"
-      :key="item"
-      :to="item.path"
-      >{{ item.name }}</router-link
-    >
+    <router-link class="menu" to="/">home</router-link>
+    <router-link class="menu" to="/dashboard">dashboard</router-link>
+    <router-link class="menu" to="/dropdown">dropdown</router-link>
+    <router-link class="menu" to="/modal">modal</router-link>
+    <router-link class="menu" to="/api">api</router-link>
+    <router-link class="menu" to="/input">input</router-link>
+    <router-link class="menu" to="/carousel">carousel</router-link>
+    <router-link class="menu" to="/nestrouter">nestrouter</router-link>
   </nav>
-  <div class="box">
+  <div class="box router-box">
     <router-view />
   </div>
 </template>
 
 <script setup>
 import router from "./router";
-const routeslist = router.options.routes;
+console.log(router);
 </script>
 
 <style lang="scss">
@@ -31,5 +32,9 @@ const routeslist = router.options.routes;
   &:hover {
     border-top: 2px solid orange;
   }
+}
+.router-box {
+  border: 1px solid orchid;
+  padding: 1rem;
 }
 </style>

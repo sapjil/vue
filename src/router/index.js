@@ -6,6 +6,10 @@ import ModalComp from "../views/ModalComp.vue";
 import DropDownComp from "../views/DropDownComp.vue";
 import InputComp from "../views/InputComp.vue";
 import Carousel from "../views/CarouselComp.vue";
+import RouterComp from "../views/RouterComp.vue";
+import RouterSample1Comp from "../views/RouterSample1Comp.vue";
+import RouterSample2Comp from "../views/RouterSample2Comp.vue";
+import NotFound from "../views/NotFound.vue";
 
 const routes = [
   {
@@ -39,9 +43,31 @@ const routes = [
     component: InputComp,
   },
   {
+    path: "/nestrouter",
+    component: RouterComp,
+    children: [
+      {
+        path: "profile",
+        name: "profile",
+        component: RouterSample1Comp,
+      },
+      {
+        path: "profile",
+        name: "profile",
+        component: RouterSample1Comp,
+      },
+      { path: "info", name: "info", component: RouterSample2Comp },
+    ],
+  },
+  {
     path: "/carousel",
     name: "carousel",
     component: Carousel,
+  },
+  {
+    path: "/:notFound(.*)",
+    name: "Not Found",
+    component: NotFound,
   },
 ];
 
