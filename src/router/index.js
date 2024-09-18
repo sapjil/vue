@@ -9,6 +9,8 @@ import Carousel from "../views/CarouselComp.vue";
 import RouterComp from "../views/RouterComp.vue";
 import RouterSample1Comp from "../views/RouterSample1Comp.vue";
 import RouterSample2Comp from "../views/RouterSample2Comp.vue";
+import BookList from "../views/BookList.vue";
+import BookDetail from "@/components/Book/BookDetail.vue";
 import NotFound from "../views/NotFound.vue";
 
 const routes = [
@@ -63,6 +65,21 @@ const routes = [
     path: "/carousel",
     name: "carousel",
     component: Carousel,
+  },
+  {
+    path: "/book",
+    name: "BookList",
+    component: BookList,
+  },
+  {
+    path: "/book/:id",
+    name: "Book",
+    component: BookDetail,
+    props: (route) => ({
+      id: route.params.id,
+      title: route.params.title,
+      content: route.params.content,
+    }),
   },
   {
     path: "/:notFound(.*)",

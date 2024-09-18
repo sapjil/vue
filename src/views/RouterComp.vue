@@ -1,17 +1,24 @@
 <template>
   <h2>Router Sample</h2>
-  <router-link class="menu" to="/nestrouter/profile">profile</router-link>
-  <router-link class="menu" to="/nestrouter/info">info</router-link>
+  <div class="link-wrap">
+    <router-link class="menu" to="/nestrouter/profile"
+      >nest router 1</router-link
+    >
+    <router-link class="menu" to="/nestrouter/info">nest router 2</router-link>
+  </div>
   <div class="inner-router">
     <router-view />
   </div>
 </template>
 
-<script setup></script>
+<script></script>
 
 <style lang="scss" scoped>
 .inner-router {
   border: 1px solid green;
   padding: 1rem;
+}
+.link-wrap {
+  padding: 1rem 0;
 }
 </style>

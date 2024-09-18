@@ -1,6 +1,7 @@
 <template>
   <nav>
     <router-link class="menu" to="/">home</router-link>
+    <router-link class="menu" to="/book">BookList</router-link>
     <router-link class="menu" to="/dashboard">dashboard</router-link>
     <router-link class="menu" to="/dropdown">dropdown</router-link>
     <router-link class="menu" to="/modal">modal</router-link>
@@ -15,8 +16,8 @@
 </template>
 
 <script setup>
-import router from "./router";
-console.log(router);
+// import router from "./router";
+// console.log(router);
 </script>
 
 <style lang="scss">
