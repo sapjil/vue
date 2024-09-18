@@ -45,7 +45,7 @@ const routes = [
     component: InputComp,
   },
   {
-    path: "/nestrouter",
+    path: "/router",
     component: RouterComp,
     children: [
       {

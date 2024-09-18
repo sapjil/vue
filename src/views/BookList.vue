@@ -1,9 +1,11 @@
 <template>
   <div>book</div>
   <ul>
-    <li v-for="book in books" :key="book.id" @click="showBookDetail(book.id)">
-      {{ book.id }} .
-      {{ book.title }}
+    <li v-for="book in books" :key="book.id">
+      <button @click="showBookDetail(book.id)">
+        {{ book.id }} .
+        {{ book.title }}
+      </button>
     </li>
   </ul>
 </template>
