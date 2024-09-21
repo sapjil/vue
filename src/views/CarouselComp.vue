@@ -11,7 +11,9 @@
 					# > active가 datas가 active된 상태의 id를 비교하여 표시
 					-->
           <div :key="datas[active].id" v-show="active === datas[active].id">
-            <p>{{ datas[active].text }}</p>
+            <p>
+              <b>{{ datas[active].id }}</b> {{ datas[active].text }}
+            </p>
           </div>
         </transition>
       </div>
@@ -34,7 +36,8 @@
           :class="{ current: active === data.id }"
           @click="current(data.id)"
         >
-          <span>{{ data.id + 1 }}</span> / <span>{{ datas.length }}</span>
+          <span>{{ data.id }}</span> /
+          <span>{{ datas.length }}</span>
         </li>
       </ul>
       <button type="button" @click="next" class="carousel__next">
@@ -44,58 +47,64 @@
   </section>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      active: 0,
-      datas: [
-        {
-          id: 0,
-          text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum at aliquid, a natus repudiandae, iste officiis, ipsam laudantium perspiciatis modi beatae sunt dolorem aperiam incidunt esse hic ipsum ut repellat.",
-        },
-        {
-          id: 1,
-          text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum at aliquid, a natus repudiandae, iste officiis, ipsam laudantium perspiciatis",
-        },
-        {
-          id: 2,
-          text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum at aliquid, a natus repudiandae, iste officiis, ipsam laudantium perspiciatis modi beatae sunt dolorem aperiam incidunt esse hic ipsum ut repellat.",
-        },
-        {
-          id: 3,
-          text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum at aliquid, a natus repudiandae",
-        },
-      ],
-    };
+<script setup>
+import { onMounted, ref } from "vue";
+
+const datas = [
+  {
+    id: 0,
+    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum at aliquid, a natus repudiandae, iste officiis, ipsam laudantium perspiciatis modi beatae sunt dolorem aperiam incidunt esse hic ipsum ut repellat.",
   },
-  methods: {
-    current(id) {
-      this.active = id;
-    },
-    prev() {
-      if (this.active <= 0) {
-        this.active = this.datas.length - 1;
-      } else {
-        this.active--;
-      }
-    },
-    next() {
-      if (this.active >= this.datas.length - 1) {
-        this.active = 0;
-      } else {
-        this.active++;
-      }
-    },
+  {
+    id: 1,
+    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum at aliquid, a natus repudiandae, iste officiis, ipsam laudantium perspiciatis",
   },
-  // 자동 플레이시 사용
-  // mounted() {
-  //   let that = this;
-  //   setInterval(() => {
-  //     that.next();
-  //   }, 4000);
-  // },
+  {
+    id: 2,
+    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum at aliquid, a natus repudiandae, iste officiis, ipsam laudantium perspiciatis modi beatae sunt dolorem aperiam incidunt esse hic ipsum ut repellat.",
+  },
+  {
+    id: 3,
+    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum at aliquid, a natus repudiandae",
+  },
+  {
+    id: 4,
+    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum at aliquid, a natus repudiandae, iste officiis, ipsam laudantium perspiciatis modi beatae sunt dolorem aperiam incidunt esse hic ipsum ut repellat.",
+  },
+  {
+    id: 5,
+    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum at aliquid, a natus repudiandae",
+  },
+];
+
+const active = ref(1);
+
+const current = (id) => {
+  active.value = id;
 };
+
+const prev = () => {
+  if (active.value <= 0) {
+    active.value = datas.length - 1;
+  } else {
+    active.value--;
+  }
+};
+
+const next = () => {
+  if (active.value >= datas.length - 1) {
+    active.value = 0;
+  } else {
+    active.value++;
+  }
+};
+
+onMounted(() => {
+  // 자동실행일 경우 활성
+  // setInterval(() => {
+  //   next();
+  // }, 3000);
+});
 </script>
 
 <style lang="scss" scoped>
