@@ -47,20 +47,21 @@
   <div class="form-div">
     <label for="check01"><b>INFO</b></label>
     <div class="input-wrap">
-      <font-awesome-icon icon="square-check" fixed-width size="lg" />
       <input type="checkbox" name="" id="check01" v-model="checkbox" />
     </div>
   </div>
 
   <br />
 
-  <span class="icon icon-solid icon-xmark"></span> Login
-
-  <br />
-
   <div class="form-div">
     <label for="check02"><b>INFO</b></label>
-    <input type="radio" name="radiogroup" id="check02" v-model="radio" />
+    <input
+      type="radio"
+      name="radiogroup"
+      id="check02"
+      checked
+      v-model="radio"
+    />
     <input type="radio" name="radiogroup" id="check03" v-model="radio" />
   </div>
 
@@ -135,13 +136,13 @@ label {
 .input-wrap {
   position: relative;
   input {
-    position: absolute;
-    left: 0;
-    opacity: 0;
+    // position: absolute;
+    // left: 0;
+    // opacity: 0;
   }
 }
 input {
-  appearance: none;
+  // appearance: none;
   border: 1px solid #ddd;
   padding: 1rem;
   border-radius: 0.5rem;
@@ -157,7 +158,7 @@ input {
     padding: 0;
     border-radius: 0.25rem;
     &:checked {
-      background: #ccc;
+      // background: #ccc;
     }
   }
   &[type="radio"] {
@@ -167,7 +168,7 @@ input {
     border-radius: 10rem;
     padding: 0;
     &:checked {
-      background: #ccc;
+      // background: #ccc;
     }
   }
 }

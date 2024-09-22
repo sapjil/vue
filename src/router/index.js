@@ -12,6 +12,7 @@ import RouterSample2Comp from "../views/RouterSample2Comp.vue";
 import BookList from "../views/BookList.vue";
 import BookDetail from "@/components/Book/BookDetail.vue";
 import NotFound from "../views/NotFound.vue";
+import DataBind from "../views/DataBind.vue";
 
 const routes = [
   {
@@ -65,6 +66,11 @@ const routes = [
     path: "/carousel",
     name: "carousel",
     component: Carousel,
+  },
+  {
+    path: "/databind",
+    name: "databind",
+    component: DataBind,
   },
   {
     path: "/book",
