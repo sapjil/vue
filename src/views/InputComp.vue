@@ -1,5 +1,41 @@
 <template>
   <div class="form-div">
+    <div style="width: 360px; display: flex" ref="btnGroup">
+      <button
+        type="button"
+        :class="{ active: isSelected === 'AAA' }"
+        @click="btnHandler('AAA')"
+      >
+        AAA
+      </button>
+      <button
+        type="button"
+        :class="{ active: isSelected === 'BBB' }"
+        @click="btnHandler('BBB')"
+      >
+        BBB
+      </button>
+      <button
+        type="button"
+        :class="{ active: isSelected === 'CCC' }"
+        @click="btnHandler('CCC')"
+      >
+        CCC
+      </button>
+    </div>
+  </div>
+  <div style="" v-if="answerBox">
+    <p style="padding: 1rem 0; flex: 1 0 auto">
+      {{ message || "Not Selected" }}
+    </p>
+    <button type="button" class="btn close" @click="closeAnswer">
+      <font-awesome-icon icon="xmark" />
+    </button>
+  </div>
+
+  <br />
+
+  <div class="form-div">
     <label for="username"><b>INFO</b></label>
     <input type="text" name="" id="username" v-model="username" />
     <button type="submit" @click="submitForm">submit</button>
@@ -27,6 +63,8 @@
     <input type="radio" name="radiogroup" id="check02" v-model="radio" />
     <input type="radio" name="radiogroup" id="check03" v-model="radio" />
   </div>
+
+  <br />
 </template>
 
 <script setup>
@@ -36,15 +74,47 @@ const username = ref("");
 const checkbox = ref("");
 const radio = ref("");
 const dadada = ref("");
+const isSelected = ref(true);
+const btnGroup = ref("");
+const message = ref("");
+const answerBox = ref(false);
 
 const submitForm = () => {
   console.log(username.value);
   dadada.value = username.value;
   username.value = "";
 };
+
+const closeAnswer = () => {
+  answerBox.value = false;
+};
+
+const btnHandler = (item) => {
+  answerBox.value = true;
+  switch (item) {
+    case "AAA":
+      isSelected.value = item;
+      message.value = "AAA";
+      break;
+    case "BBB":
+      isSelected.value = item;
+      message.value = "BBB";
+      break;
+    case "CCC":
+      isSelected.value = item;
+      message.value = "CCC";
+      break;
+  }
+};
 </script>
 
 <style lang="scss" scoped>
+button {
+  &.active {
+    background: #444;
+    color: #eee;
+  }
+}
 .form-div {
   max-width: $mobile;
   display: flex;
