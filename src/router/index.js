@@ -50,16 +50,11 @@ const routes = [
     component: RouterComp,
     children: [
       {
-        path: "profile",
+        path: "/profile",
         name: "profile",
         component: RouterSample1Comp,
       },
-      {
-        path: "profile",
-        name: "profile",
-        component: RouterSample1Comp,
-      },
-      { path: "info", name: "info", component: RouterSample2Comp },
+      { path: "/info", name: "info", component: RouterSample2Comp },
     ],
   },
   {

@@ -1,10 +1,8 @@
 <template>
   <h2>Router Sample</h2>
   <div class="link-wrap">
-    <router-link class="menu" to="/nestrouter/profile"
-      >nest router 1</router-link
-    >
-    <router-link class="menu" to="/nestrouter/info">nest router 2</router-link>
+    <router-link class="menu" to="/profile">nest router 1</router-link>
+    <router-link class="menu" to="/info">nest router 2</router-link>
   </div>
   <div class="inner-router">
     <router-view />
