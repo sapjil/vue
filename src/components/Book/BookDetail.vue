@@ -2,26 +2,21 @@
   <div>
     <div>detail</div>
     <div class="detail-wrap">
-      <p>title: {{ title }}</p>
-      <p>content: {{ content }}</p>
+      <p>title: {{ title || "no title" }}</p>
+      <p>content: {{ content || "no content" }}</p>
       <p>{{ id }}</p>
     </div>
     <router-link to="/book">back</router-link>
   </div>
 </template>
 
-<script>
-export default {
-  name: "BookDetail",
-  data() {
-    return {};
-  },
-  props: {
-    id: Number,
-    title: String,
-    content: String,
-  },
-};
+<script setup>
+const props = defineProps({
+  id: String,
+  title: String,
+  content: String,
+});
+console.log(props);
 </script>
 
 <style lang="scss">

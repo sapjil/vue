@@ -74,7 +74,7 @@ const routes = [
   },
   {
     path: "/book/:id",
-    name: "Book",
+    name: "book",
     component: BookDetail,
     props: (route) => ({
       id: route.params.id,

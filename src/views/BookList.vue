@@ -1,26 +1,24 @@
 <template>
   <div>book</div>
   <ul>
-    <li v-for="book in books" :key="book.id">
-      <button @click="showBookDetail(book.id)">
-        {{ book.id }} .
-        {{ book.title }}
+    <li v-for="item in books" :books="books" :key="item.id">
+      <button @click="showBookDetail(item.id)">
+        {{ item.id }} .
+        {{ item.title }}
       </button>
     </li>
   </ul>
 </template>
 
 <script>
+import { books } from "@/assets/sampledata.js";
+
 export default {
   name: "BookList",
   data() {
     return {
+      books: books,
       bookIndex: -1,
-      books: [
-        { id: 1, title: "本のタイトル「극기훈련」", content: "books 1" },
-        { id: 2, title: "本のタイトル「훈방조치」", content: "books 2" },
-        { id: 3, title: "本のタイトル「나아가라」", content: "books 3" },
-      ],
     };
   },
   methods: {
@@ -30,7 +28,7 @@ export default {
       // console.log("bookIndex: ", this.bookIndex);
       // this.books.id;
       this.$router.push({
-        name: "Book",
+        name: "book",
         params: {
           id: this.books[this.bookIndex].id,
           title: this.books[this.bookIndex].title,
@@ -42,7 +40,9 @@ export default {
       console.log(this.books[this.bookIndex].content);
     },
   },
-  mounted() {},
+  mounted() {
+    console.log(books);
+  },
 };
 </script>
 
