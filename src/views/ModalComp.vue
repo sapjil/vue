@@ -38,20 +38,22 @@
   <br />
 
   <Teleport to="#modal">
-    <transition name="slide-fade" mode="out-in">
-      <ModalPop
-        v-if="isModal"
-        v-bind="modalData"
-        @close-from-child="handleEvent"
-        @close="changePopState()"
-      />
-    </transition>
+    <ModalPop
+      :show="isModal"
+      v-bind="modalData"
+      @close-from-child="handleEvent"
+      @close="changePopState()"
+    />
   </Teleport>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import ModalPop from "@/components/Parts/ModalPop.vue";
+
+onMounted(() => {
+  console.debug(document.querySelectorAll(".modal-wrap"));
+});
 
 // MODAL 1
 const isModal = ref(false);
@@ -60,20 +62,20 @@ const openModalHandler = ref("");
 const changePopState = () => {
   console.debug("Open Modal");
   isModal.value = !isModal.value;
-  // document.documentElement.style.overflow = "hidden";
+  document.documentElement.style.overflow = "hidden";
 };
 
 const handleEvent = (data) => {
   console.debug("Handle Event", data);
   changePopState();
   openModalHandler.value.focus();
-  // document.documentElement.style.overflow = "auto";
+  document.documentElement.style.overflow = "auto";
 };
 
 const modalData = {
   name: "test-modal",
   type: "confirm",
-  size: "large",
+  size: "small",
   title: "modal box",
   subtit: "sub title",
   base: "Lorem <b>ipsum</b> dolor sit amet<br /> <span style='color:red'>consectetur</span> adipisicing elit.",
@@ -92,6 +94,6 @@ const modalData = {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  // z-index: 1;
 }
 </style>

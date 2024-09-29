@@ -17,6 +17,7 @@ const props = defineProps({
   content: String,
 });
 console.log(props);
+console.log(props);
 </script>
 
 <style lang="scss">

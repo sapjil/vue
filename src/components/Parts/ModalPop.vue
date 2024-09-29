@@ -1,72 +1,76 @@
 <template>
-  <dialog
-    class="modal-wrap"
-    :id="name ? name : ''"
-    :class="size ? size : ''"
-    :aria-label="props?.title"
-    :aria-describedby="props?.title"
-  >
-    <header class="modal-header">
-      <h2 class="modal-title">
-        <div v-if="props?.title">
-          {{ props?.title ? props?.title : "NO TITLE" }}
-        </div>
-        <slot v-else name="header">{{
-          props?.title ? props?.title : "NO TITLE"
-        }}</slot>
-      </h2>
-      <p v-if="props?.subtit">
-        {{ props?.subtit ? props?.subtit : "NO DESCRIPTION" }}
-      </p>
-    </header>
-
-    <main class="modal-content">
-      <div v-if="props?.base" v-html="props?.base" />
-      <slot v-else></slot>
-    </main>
-
-    <footer class="modal-btns" v-if="props?.type === 'confirm'">
-      <button type="reset" @click="closeThisModal()">
-        {{ props?.cancel ? props?.cancel : "CANCEL" }}
-      </button>
-      <button
-        class="btn-primary"
-        type="submit"
-        autofocus
-        @click="this.$emit('close', false)"
-      >
-        {{ props?.submit ? props?.submit : "OK" }}
-      </button>
-    </footer>
-
-    <footer class="modal-btns" v-else-if="props?.type === 'alert'">
-      <button
-        class="btn-primary"
-        type="button"
-        autofocus
-        @click="this.$emit('close', false)"
-      >
-        {{ props?.submit ? props?.submit : "OK" }}
-      </button>
-    </footer>
-
-    <footer class="modal-btns" v-show="false" v-else></footer>
-
-    <button
-      type="submit"
-      class="modal-close"
-      v-if="props?.close"
-      @click="closeThisModal()"
+  <transition name="slide-fade" mode="out-in">
+    <dialog
+      v-if="show"
+      class="modal-wrap"
+      :id="name ? name : ''"
+      :class="size ? size : ''"
+      :aria-label="props?.title"
+      :aria-describedby="props?.title"
     >
-      <font-awesome-icon icon="xmark" style="width: 1.5rem; height: 1.5rem" />
-    </button>
-  </dialog>
+      <header class="modal-header">
+        <h2 class="modal-title">
+          <div v-if="props?.title">
+            {{ props?.title ? props?.title : "NO TITLE" }}
+          </div>
+          <slot v-else name="header">{{
+            props?.title ? props?.title : "NO TITLE"
+          }}</slot>
+        </h2>
+        <p v-if="props?.subtit">
+          {{ props?.subtit ? props?.subtit : "NO DESCRIPTION" }}
+        </p>
+      </header>
+
+      <main class="modal-content">
+        <div v-if="props?.base" v-html="props?.base" />
+        <slot v-else></slot>
+      </main>
+
+      <footer class="modal-btns" v-if="props?.type === 'confirm'">
+        <button type="reset" @click="closeThisModal()">
+          {{ props?.cancel ? props?.cancel : "CANCEL" }}
+        </button>
+        <button
+          class="btn-primary"
+          type="submit"
+          autofocus
+          @click="$emit('close')"
+        >
+          {{ props?.submit ? props?.submit : "OK" }}
+        </button>
+      </footer>
+
+      <footer class="modal-btns" v-else-if="props?.type === 'alert'">
+        <button
+          class="btn-primary"
+          type="button"
+          autofocus
+          @click="$emit('close')"
+        >
+          {{ props?.submit ? props?.submit : "OK" }}
+        </button>
+      </footer>
+
+      <footer class="modal-btns" v-show="false" v-else></footer>
+
+      <button
+        type="submit"
+        class="modal-close"
+        v-if="props?.close"
+        @click="closeThisModal()"
+      >
+        <font-awesome-icon icon="xmark" style="width: 1.5rem; height: 1.5rem" />
+      </button>
+    </dialog>
+  </transition>
 </template>
 
 <script setup>
 import { defineProps, defineEmits } from "vue";
 
 const props = defineProps({
+  show: Boolean,
   // 모달에 고유 ID 적용
   name: {
     type: String,
@@ -128,6 +132,7 @@ const emits = defineEmits(["closeFromChild"]);
 const closeThisModal = () => {
   emits("closeFromChild");
   console.debug("Close Pop");
+  console.debug(document.documentElement.style);
 };
 </script>
 
