@@ -13,6 +13,7 @@ import BookList from "../views/BookList.vue";
 import BookDetail from "@/components/Book/BookDetail.vue";
 import NotFound from "../views/NotFound.vue";
 import DataBind from "../views/DataBind.vue";
+import TooltipComp from "@/views/TooltipComp.vue";
 
 const routes = [
   {
@@ -66,6 +67,11 @@ const routes = [
     path: "/databind",
     name: "databind",
     component: DataBind,
+  },
+  {
+    path: "/tooltip",
+    name: "tooltip",
+    component: TooltipComp,
   },
   {
     path: "/book",
