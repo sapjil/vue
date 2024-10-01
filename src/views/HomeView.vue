@@ -10,6 +10,9 @@
       <li><router-link class="menu" to="/carousel">carousel</router-link></li>
       <li><router-link class="menu" to="/router">router</router-link></li>
       <li><router-link class="menu" to="/tooltip">tooltip</router-link></li>
+      <li>
+        <router-link class="menu" to="/isprops">isprops(tab)</router-link>
+      </li>
       <li><router-link class="menu" to="/databind">databind</router-link></li>
     </ul>
   </div>

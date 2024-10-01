@@ -14,6 +14,7 @@ import BookDetail from "@/components/Book/BookDetail.vue";
 import NotFound from "../views/NotFound.vue";
 import DataBind from "../views/DataBind.vue";
 import TooltipComp from "@/views/TooltipComp.vue";
+import IsComp from "@/views/isComp.vue";
 
 const routes = [
   {
@@ -77,6 +78,11 @@ const routes = [
     path: "/book",
     name: "BookList",
     component: BookList,
+  },
+  {
+    path: "/isprops",
+    name: "isprops",
+    component: IsComp,
   },
   {
     path: "/book/:id",
