@@ -1,4 +1,5 @@
 <template>
+  <div class="dialog-back" v-if="show" @click="closeThisModal()"></div>
   <transition name="slide-fade" mode="out-in">
     <dialog
       v-if="show"
@@ -27,7 +28,7 @@
         <slot v-else></slot>
       </main>
 
-      <footer class="modal-btns" v-if="props?.footer === null ? footer : true">
+      <menu class="modal-btns" v-if="props?.footer === null ? footer : true">
         <button
           type="reset"
           v-if="props?.type === 'confirm'"
@@ -43,7 +44,7 @@
         >
           {{ props?.submit || "OK" }}
         </button>
-      </footer>
+      </menu>
 
       <button
         type="submit"
@@ -133,6 +134,15 @@ const closeThisModal = () => {
 </script>
 
 <style lang="scss" scoped>
+.dialog-back {
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
 dialog {
   box-shadow: 0px 20px 36px 0px rgba(0, 0, 0, 0.6);
   &::backdrop {

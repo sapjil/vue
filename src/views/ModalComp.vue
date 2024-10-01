@@ -20,29 +20,32 @@
   <br />
 
   <ul>
+    <li>Modal은 props보다 slot을 사용하는 것이 좀더 대응의 폭이 넓다.</li>
+    <li>
+      단순한 System Alert이라면 props가, 넓은 대응폭이 필요한 경우는 slot이
+      유용할 것 같다.
+    </li>
+    <li>props: profile card, carousels, tables ...</li>
+    <li>slots: modals, cards, toast notifcations ...</li>
     <li>defineProps</li>
     <li>defineEmits</li>
   </ul>
 
   <br />
 
-  <button ref="openModalHandler" @click="changePopState()">
+  <button ref="openModalHandler" @click="openModal('modal1')">
     modal open
-    <font-awesome-icon
-      icon="window-restore"
-      fixed-width
-      style="width: 1rem; height: 1rem"
-    />
   </button>
 
   <br />
 
   <Teleport to="#modal">
     <ModalPop
+      id="modal1"
       :show="isModal"
       v-bind="modalData"
       @close-from-child="handleEvent"
-      @close="changePopState()"
+      @close="changePopState(id)"
     />
   </Teleport>
 </template>
@@ -56,19 +59,20 @@ onMounted(() => {
 });
 
 // MODAL 1
-const isModal = ref(true);
-const openModalHandler = ref("");
+const isModal = ref(false);
+
+const openModal = () => {
+  isModal.value = true;
+  document.documentElement.style.overflow = "hidden";
+};
 
 const changePopState = () => {
-  console.debug("Open Modal");
   isModal.value = !isModal.value;
   document.documentElement.style.overflow = "hidden";
 };
 
 const handleEvent = (data) => {
-  console.debug("Handle Event", data);
-  changePopState();
-  openModalHandler.value.focus();
+  changePopState(data);
   document.documentElement.style.overflow = "auto";
 };
 
