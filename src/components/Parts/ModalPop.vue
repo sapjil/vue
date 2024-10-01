@@ -3,8 +3,8 @@
     <dialog
       v-if="show"
       class="modal-wrap"
-      :id="name ? name : ''"
-      :class="size ? size : ''"
+      :id="name || ''"
+      :class="[size || '', type || '']"
       :aria-label="props?.title"
       :aria-describedby="props?.title"
     >
@@ -18,7 +18,7 @@
           }}</slot>
         </h2>
         <p v-if="props?.subtit">
-          {{ props?.subtit ? props?.subtit : "NO DESCRIPTION" }}
+          {{ props?.subtit || "NO DESCRIPTION" }}
         </p>
       </header>
 
@@ -27,9 +27,13 @@
         <slot v-else></slot>
       </main>
 
-      <footer class="modal-btns" v-if="props?.type === 'confirm'">
-        <button type="reset" @click="closeThisModal()">
-          {{ props?.cancel ? props?.cancel : "CANCEL" }}
+      <footer class="modal-btns" v-if="props?.footer === null ? footer : true">
+        <button
+          type="reset"
+          v-if="props?.type === 'confirm'"
+          @click="closeThisModal()"
+        >
+          {{ props?.cancel || "CANCEL" }}
         </button>
         <button
           class="btn-primary"
@@ -37,27 +41,14 @@
           autofocus
           @click="$emit('close')"
         >
-          {{ props?.submit ? props?.submit : "OK" }}
+          {{ props?.submit || "OK" }}
         </button>
       </footer>
-
-      <footer class="modal-btns" v-else-if="props?.type === 'alert'">
-        <button
-          class="btn-primary"
-          type="button"
-          autofocus
-          @click="$emit('close')"
-        >
-          {{ props?.submit ? props?.submit : "OK" }}
-        </button>
-      </footer>
-
-      <footer class="modal-btns" v-show="false" v-else></footer>
 
       <button
         type="submit"
         class="modal-close"
-        v-if="props?.close"
+        v-if="props?.close === null ? close : true"
         @click="closeThisModal()"
       >
         <font-awesome-icon icon="xmark" style="width: 1.5rem; height: 1.5rem" />
@@ -116,6 +107,11 @@ const props = defineProps({
   submit: {
     type: String,
     required: false,
+  },
+  // 모달 footer 영역 지정시
+  footer: {
+    type: [Boolean, null],
+    required: true,
   },
   // 모달 닫기 버튼
   close: {

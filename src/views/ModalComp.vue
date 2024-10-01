@@ -12,7 +12,7 @@
     <tbody>
       <tr v-for="(item, idx) in modalData" :key="idx">
         <th>{{ idx }}</th>
-        <td>{{ item }}</td>
+        <td>{{ item || "-" }}</td>
       </tr>
     </tbody>
   </table>
@@ -56,7 +56,7 @@ onMounted(() => {
 });
 
 // MODAL 1
-const isModal = ref(false);
+const isModal = ref(true);
 const openModalHandler = ref("");
 
 const changePopState = () => {
@@ -81,6 +81,7 @@ const modalData = {
   base: "Lorem <b>ipsum</b> dolor sit amet<br /> <span style='color:red'>consectetur</span> adipisicing elit.",
   cancel: "취소",
   submit: "확인",
+  footer: true,
   close: true,
 };
 </script>
